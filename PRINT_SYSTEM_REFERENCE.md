@@ -129,7 +129,7 @@ interface BonSortiePrintData {
  * - title: Titre du document
  * - reference: Numéro/référence du document
  * - date: Date du document
- * - companyName: Nom de l'entreprise (défaut: Respect Environnement Group)
+ * - companyName: Nom de l'entreprise (défaut: DEMO)
  * - companyAddress: Adresse (défaut: Résidence Essalem, bloc A au 1er étage, Bureau A.1-1, Ennasr 2 Ariana 2037	)
  * - companyPhone: Téléphone (défaut: 25 535 035)
  * - companyVAT: N° TVA (défaut: 1615506X/A/M/000)

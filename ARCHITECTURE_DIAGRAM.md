@@ -140,7 +140,7 @@ PrintLayout
 ├─ Signatures
 │  ├─ Le client
 │  ├─ Le livreur
-│  └─ Pour Respect Environnement Group
+│  └─ Pour DEMO
 └─ PrintFooter
 ```
 

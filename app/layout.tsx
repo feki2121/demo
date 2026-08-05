@@ -10,7 +10,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Respect Environnement Group REG',
+  title: 'DEMO REG',
   description: 'Application de gestion pour magasin d\'électroménager',
   generator: 'v0.app',
   icons: {

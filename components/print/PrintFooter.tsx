@@ -2,7 +2,7 @@ import React from "react";
 import { PrintFooterProps } from "@/types/print";
 
 const DEFAULT_COMPANY = {
-  name: "Respect Environnement Group",
+  name: "DEMO",
   address: "Résidence Essalem, bloc A au 1er étage, Bureau A.1-1, Ennasr 2 Ariana 2037	XXX",
   phone: "25 535 035",
 };

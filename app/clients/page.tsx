@@ -71,7 +71,6 @@ export default function ClientsPage() {
   // Formulaire état
   const [formData, setFormData] = useState({
     nom: "",
-    prenom: "",
     telephone: "",
     email: "",
     cin: "",
@@ -89,8 +88,7 @@ export default function ClientsPage() {
     if (!searchTerm.trim()) return clients;
     const lower = searchTerm.toLowerCase();
     return clients.filter(c =>
-      c.nom.toLowerCase().includes(lower) ||
-      (c.prenom && c.prenom.toLowerCase().includes(lower))
+      c.nom.toLowerCase().includes(lower)
     );
   }, [clients, searchTerm]);
 
@@ -428,7 +426,6 @@ export default function ClientsPage() {
     setSelectedClient(client);
     setFormData({
       nom: client.nom,
-      prenom: client.prenom,
       telephone: client.telephone,
       email: client.email || "",
       cin: client.cin || "",
@@ -454,7 +451,6 @@ export default function ClientsPage() {
   const resetForm = () => {
     setFormData({
       nom: "",
-      prenom: "",
       telephone: "",
       email: "",
       cin: "",
@@ -722,16 +718,6 @@ export default function ClientsPage() {
                           id="nom"
                           placeholder="Nom du client"
                           value={formData.nom}
-                          onChange={handleInputChange}
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="prenom">prenom</Label>
-                        <Input
-                          id="prenom"
-                          placeholder="prenom du client"
-                          value={formData.prenom}
                           onChange={handleInputChange}
                           required
                         />

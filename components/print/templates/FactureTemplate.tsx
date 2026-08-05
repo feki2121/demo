@@ -10,7 +10,7 @@ interface FactureTemplateProps {
 }
 
 const DEFAULT_COMPANY = {
-  name: "Respect Environnement Group",
+  name: "DEMO",
   address: "Adresse : Résidence Essalem, Bloc A au 1er étage, Bureau A.1-1, Ennasr 2, Ariana 2037",
   phone: "25 535 035",
   vat: "1615506X/A/M/000",

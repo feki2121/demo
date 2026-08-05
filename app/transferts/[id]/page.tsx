@@ -167,7 +167,7 @@ export default function TransfertDetailPage() {
     <body>
       <div class="print-container">
         <div class="header">
-          <div class="company-name">Respect Environnement Group</div>
+          <div class="company-name">DEMO</div>
           <div class="company-details">Résidence Essalem, bloc A au 1er étage, Bureau A.1-1, Ennasr 2 Ariana 2037	 | Tél: 25 535 035 | MF: 1615506X/A/M/000</div>
           <div class="title">BON DE TRANSFERT DE STOCK</div>
           <div class="subtitle">Document de suivi des mouvements entre emplacements</div>
@@ -214,7 +214,7 @@ export default function TransfertDetailPage() {
           <div class="signature-block"><div class="signature-line"></div><div class="signature-label">LE DESTINATAIRE</div></div>
         </div>
 
-        <div class="footer">Document généré automatiquement - Respect Environnement Group</div>
+        <div class="footer">Document généré automatiquement - DEMO</div>
       </div>
     </body>
     </html>

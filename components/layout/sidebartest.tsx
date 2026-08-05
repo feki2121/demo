@@ -85,44 +85,28 @@ export function Sidebar() {
       title: "Ventes",
       icon: ShoppingCart,
       children: [
-        { title: "Clients Prospects", href: "/clientsprospects/clients?seulementProspects=true" },
-        { title: "Chantiers", href: "/chantiers" },
         { title: "Clients", href: "/clients" },
         { title: "Devis", href: "/devis" },
         { title: "Bons de Livraison", href: "/bons-livraison" },
-        { title: "Bons de Sortie", href: "/bons-sortie" },
-        { title: "Bons de transfert", href: "/transferts" },
         ...(userRole === "ADMIN"
           ? [
             { title: "Factures Clients", href: "/factures" }
           ]
           : []),
-        { title: "Retours Clients", href: "/retours-clients" },
         { title: "Règlements Clients", href: "/reglements/clients" },
         { title: "Soldes Clients", href: "/clients/solde" },
       ],
     },
     {
-      title: "Stock & Produits",
+      title: "Services",
       icon: Package,
       children: [
-        { title: "Produits", href: "/produits" },
+        { title: "Services", href: "/produits" },
         ...(userRole === "ADMIN"
           ? [
             { title: "Catégories", href: "/categories" },
-            { title: "Alertes Stock", href: "/stock/alertes" },
-            { title: "Transfert Stock", href: "/transferts" },
           ]
           : []),
-        { title: "Inventaire Journalier", href: "/inventaire-journalier" },
-        { title: "Inventaires", href: "/inventaires" },
-      ],
-    },
-    {
-      title: "Logistique",
-      icon: Truck,
-      children: [
-        { title: "Tournée", href: "/tournees" },
       ],
     },
     {
@@ -234,14 +218,14 @@ export function Sidebar() {
           </div>
           {(!isMobile && !isCollapsed) && (
             <div className="flex flex-col">
-              <span className="text-sm font-semibold">Respect Environnement Group</span>
-              <span className="text-xs text-sidebar-foreground/60">Facturation & Stock</span>
+              <span className="text-sm font-semibold">DEMO</span>
+              <span className="text-xs text-sidebar-foreground/60">Facturation & Service</span>
             </div>
           )}
           {isMobile && isMobileOpen && (
             <div className="flex flex-col">
-              <span className="text-sm font-semibold">Respect Environnement Group</span>
-              <span className="text-xs text-sidebar-foreground/60">Facturation & Stock</span>
+              <span className="text-sm font-semibold">DEMO</span>
+              <span className="text-xs text-sidebar-foreground/60">Facturation & Service</span>
             </div>
           )}
         </div>

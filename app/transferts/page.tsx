@@ -138,7 +138,7 @@ export default function TransfertsPage() {
     <body>
       <div class="print-container">
         <div class="header">
-          <div class="company-name">Respect Environnement Group</div>
+          <div class="company-name">DEMO</div>
           <div class="title">BON DE TRANSFERT GROUPÉ</div>
         </div>
 
@@ -176,7 +176,7 @@ export default function TransfertsPage() {
           <div class="signature-block"><div class="signature-line"></div><div class="signature-label">LE DESTINATAIRE</div></div>
         </div>
 
-        <div class="footer">Document généré automatiquement - Respect Environnement Group</div>
+        <div class="footer">Document généré automatiquement - DEMO</div>
       </div>
     </body>
     </html>

@@ -68,7 +68,6 @@ export function Sidebar() {
       title: "Ventes",
       icon: ShoppingCart,
       children: [
-        { title: "Clients Prospects", href: "/clientsprospects/clients?seulementProspects=true" },
         { title: "Clients", href: "/clients" },
         { title: "Devis", href: "/devis" },
         { title: "Bons de Livraison", href: "/bons-livraison" },
@@ -85,10 +84,10 @@ export function Sidebar() {
       ],
     },
     {
-      title: "Stock & Produits",
+      title: "Services",
       icon: Package,
       children: [
-        { title: "Produits", href: "/produits" },
+        { title: "Services", href: "/produits" },
 
         ...(userRole === "ADMIN"
           ? [
@@ -100,13 +99,6 @@ export function Sidebar() {
 
         { title: "Inventaire Journalier", href: "/inventaire-journalier" },
         { title: "Inventaires", href: "/inventaires" },
-      ],
-    },
-    {
-      title: "Logistique",
-      icon: Truck,
-      children: [
-        { title: "Tournée", href: "/tournees" },
       ],
     },
     {
@@ -187,8 +179,8 @@ export function Sidebar() {
           </div>
           {!isCollapsed && (
             <div className="flex flex-col">
-              <span className="text-sm font-semibold">Respect Environnement Group</span>
-              <span className="text-xs text-sidebar-foreground/60">Facturation & Stock</span>
+              <span className="text-sm font-semibold">DEMO</span>
+              <span className="text-xs text-sidebar-foreground/60">Facturation & Service</span>
             </div>
           )}
         </div>

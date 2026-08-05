@@ -164,7 +164,6 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { 
       nom, 
-      prenom,
       telephone, 
       adresse, 
       email, 
@@ -186,11 +185,10 @@ export async function POST(req: NextRequest) {
     }
 
     // Créer le client et son adresse dans une transaction
-    const client = await prisma.$transaction(async (tx) => {
+    const client = await prisma.$transaction(async (tx: { client: { create: (arg0: { data: { nom: any; telephone: any; email: any; cin: any; mf: any; solde: any; }; }) => any; }; clientAddress: { create: (arg0: { data: { clientId: any; adresse: any; lieuDit: any; codePostal: any; ville: any; latitude: any; longitude: any; estPrincipale: boolean; }; }) => any; }; }) => {
       const newClient = await tx.client.create({
         data: {
           nom,
-          prenom,
           telephone,
           email: email || null,
           cin: cin || null,

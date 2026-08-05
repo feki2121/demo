@@ -313,7 +313,7 @@ function buildTicketHtml(
   
   <div class="header">
     <img src="/REG.jpeg" alt="Logo" class="logo-img" style="max-width: 8mm;" onerror="this.style.display='none'" />
-    <div class="title">Respect Environnement Group</div>
+    <div class="title">DEMO</div>
     <div class="date">${now}</div>
     <div class="period">${dateRange}</div>
   </div>
@@ -581,7 +581,7 @@ function buildPrintHtml(
 
 <div class="header">
   <div>
-    <div><b>Respect Environnement Group</b></div>
+    <div><b>DEMO</b></div>
     <div style="font-size:11px;color:#666">
       SFAX - Tél: 25 535 035
     </div>

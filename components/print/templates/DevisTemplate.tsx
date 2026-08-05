@@ -9,7 +9,7 @@ interface DevisTemplateProps {
 }
 
 const DEFAULT_COMPANY = {
-  name: "Respect Environnement Group",
+  name: "DEMO",
   address: "Résidence Essalem, bloc A au 1er étage, Bureau A.1-1, Ennasr 2 Ariana 2037	",
   phone: "25 535 035",
   vat: "1615506X/A/M/000",
@@ -189,7 +189,7 @@ export const DevisTemplate: React.FC<DevisTemplateProps> = ({
           </div>
           <div className="signature-block">
             <div className="signature-line"></div>
-            <div className="signature-label">Pour Respect Environnement Group</div>
+            <div className="signature-label">Pour DEMO</div>
           </div>
         </div>
       )}
