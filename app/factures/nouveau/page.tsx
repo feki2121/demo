@@ -26,13 +26,6 @@ interface Client {
     email: string | null;
 }
 
-interface Chantier {
-    id: string;
-    nom: string;
-    reference?: string;
-    clientId?: string;
-}
-
 interface Product {
     id: string;
     reference: string;
@@ -77,7 +70,6 @@ export default function CreerFacturePage() {
     const { toast } = useToast();
     const [isMounted, setIsMounted] = useState(false);
     const [clients, setClients] = useState<Client[]>([]);
-    const [chantiers, setChantiers] = useState<Chantier[]>([]);
     const [products, setProducts] = useState<Product[]>([]);
     const [services, setServices] = useState<Product[]>([]); // ← AJOUT: services uniquement
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -85,17 +77,16 @@ export default function CreerFacturePage() {
     const [remiseType, setRemiseType] = useState<"PERCENT" | "FIXED">("PERCENT");
 
     const [selectedClientId, setSelectedClientId] = useState("");
-    const [selectedChantierId, setSelectedChantierId] = useState("");
     const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
     const [lignes, setLignes] = useState<LigneFacture[]>([
-        { 
-            id: `ligne-${Date.now()}`, 
-            productId: "", 
-            quantite: 1, 
+        {
+            id: `ligne-${Date.now()}`,
+            productId: "",
+            quantite: 1,
             prixUnitaire: 0,
             prixUnitaireTTC: 0,
-            tva: 19, 
-            remiseLigne: 0 
+            tva: 19,
+            remiseLigne: 0
         }
     ]);
 
@@ -105,19 +96,8 @@ export default function CreerFacturePage() {
 
     useEffect(() => {
         fetchClients();
-        fetchChantiers();
         fetchServices(); // ← MODIFICATION: fetchServices au lieu de fetchProducts
     }, []);
-
-    // Effet pour mettre à jour le client quand le chantier change
-    useEffect(() => {
-        if (selectedChantierId) {
-            const chantier = chantiers.find((c) => c.id === selectedChantierId);
-            if (chantier && chantier.clientId) {
-                setSelectedClientId(chantier.clientId);
-            }
-        }
-    }, [selectedChantierId, chantiers]);
 
     const fetchClients = async () => {
         try {
@@ -127,16 +107,6 @@ export default function CreerFacturePage() {
         } catch (error) {
             console.error("Error fetching clients:", error);
             toast({ title: "Erreur", description: "Impossible de charger les clients", variant: "destructive" });
-        }
-    };
-
-    const fetchChantiers = async () => {
-        try {
-            const response = await fetch("/api/chantiers?limit=500");
-            const data = await response.json();
-            setChantiers(data.data || []);
-        } catch (error) {
-            console.error("Error fetching chantiers:", error);
         }
     };
 
@@ -242,7 +212,7 @@ export default function CreerFacturePage() {
             const remiseLigne = montantRemise * proportion;
             const htApresRemise = htLigne - remiseLigne;
             const tvaLigne = htApresRemise * (l.tva / 100);
-            
+
             totalTVA += tvaLigne;
             totalTTC += htApresRemise + tvaLigne;
         });
@@ -281,7 +251,6 @@ export default function CreerFacturePage() {
                 body: JSON.stringify({
                     numero: `FACT-${Date.now()}`,
                     clientId: selectedClientId,
-                    chantierId: selectedChantierId || null,
                     date: date,
                     lignes: lignesValides.map(l => ({
                         productId: l.productId,
@@ -379,40 +348,6 @@ export default function CreerFacturePage() {
                                         </div>
 
                                         <div className="space-y-2">
-                                            <Label className="flex items-center gap-2">
-                                                <Building2 className="h-4 w-4 text-primary" />
-                                                Chantier
-                                            </Label>
-                                            {isMounted && (
-                                                <Select2
-                                                    options={[
-                                                        { value: "", label: "Aucun chantier" },
-                                                        ...chantiers.map(c => ({
-                                                            value: c.id,
-                                                            label: `${c.nom} ${c.reference ? `(${c.reference})` : ''}`
-                                                        }))
-                                                    ]}
-                                                    value={chantiers
-                                                        .map(c => ({ value: c.id, label: `${c.nom} ${c.reference ? `(${c.reference})` : ''}` }))
-                                                        .find(o => o.value === selectedChantierId) ||
-                                                        { value: "", label: "Aucun chantier" }}
-                                                    onChange={(selected: OptionType | null) => {
-                                                        setSelectedChantierId(selected?.value || "");
-                                                    }}
-                                                    placeholder="Sélectionner un chantier"
-                                                    isSearchable
-                                                    isClearable
-                                                    className="text-sm"
-                                                    classNamePrefix="select"
-                                                    menuPortalTarget={document.body}
-                                                    styles={{
-                                                        menuPortal: (base) => ({ ...base, zIndex: 9999 }),
-                                                    }}
-                                                />
-                                            )}
-                                        </div>
-
-                                        <div className="space-y-2">
                                             <Label>Date de la facture</Label>
                                             <Input
                                                 type="date"
@@ -485,7 +420,7 @@ export default function CreerFacturePage() {
                                                                 <Input
                                                                     type="number"
                                                                     step="0.001"
-                                                                    value={ligne.prixUnitaire || 0}
+                                                                    value={ligne.prixUnitaire?.toFixed(3) ?? "0.000"}
                                                                     onChange={(e) => updateLigne(idx, 'prixUnitaire', parseFloat(e.target.value) || 0)}
                                                                     className="w-32"
                                                                 />
@@ -607,8 +542,8 @@ export default function CreerFacturePage() {
                                 <Button type="button" variant="outline" onClick={() => router.push('/factures')}>
                                     Annuler
                                 </Button>
-                                <Button 
-                                    type="submit" 
+                                <Button
+                                    type="submit"
                                     disabled={isSubmitting || lignes.filter(l => l.productId).length === 0}
                                     className="gap-2"
                                 >

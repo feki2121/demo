@@ -53,17 +53,6 @@ export function Sidebar() {
       href: "/",
       icon: LayoutDashboard,
     },
-    ...(userRole === "ADMIN" ? [{
-      title: "Achats",
-      icon: ShoppingBag,
-      children: [
-        { title: "Fournisseurs", href: "/fournisseurs" },
-        { title: "Bons d'Entrée", href: "/bons-entree" },
-        { title: "Retours Fournisseurs", href: "/retours-fournisseurs" },
-        { title: "Règlements Fournisseurs", href: "/reglements/fournisseurs" },
-        { title: "Soldes Fournisseurs", href: "/fournisseurs/solde" },
-      ],
-    },] : []),
     {
       title: "Ventes",
       icon: ShoppingCart,

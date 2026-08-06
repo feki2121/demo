@@ -312,7 +312,7 @@ function buildTicketHtml(
 <div class="ticket-print">
   
   <div class="header">
-    <img src="/REG.jpeg" alt="Logo" class="logo-img" style="max-width: 8mm;" onerror="this.style.display='none'" />
+    <img src="/kf.jpg" alt="Logo" class="logo-img" style="max-width: 8mm;" onerror="this.style.display='none'" />
     <div class="title">DEMO</div>
     <div class="date">${now}</div>
     <div class="period">${dateRange}</div>
@@ -583,7 +583,7 @@ function buildPrintHtml(
   <div>
     <div><b>DEMO</b></div>
     <div style="font-size:11px;color:#666">
-      SFAX - Tél: 25 535 035
+      SFAX - Tél: 44 150 151
     </div>
   </div>
 

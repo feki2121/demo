@@ -131,9 +131,9 @@ interface BonSortiePrintData {
  * - date: Date du document
  * - companyName: Nom de l'entreprise (défaut: DEMO)
  * - companyAddress: Adresse (défaut: Résidence Essalem, bloc A au 1er étage, Bureau A.1-1, Ennasr 2 Ariana 2037	)
- * - companyPhone: Téléphone (défaut: 25 535 035)
- * - companyVAT: N° TVA (défaut: 1615506X/A/M/000)
- * - logoUrl: URL du logo (défaut: REG.jpeg)
+ * - companyPhone: Téléphone (défaut: 44 150 151)
+ * - companyVAT: N° TVA (défaut: 11111111/A/M/000)
+ * - logoUrl: URL du logo (défaut: kf.jpg)
  * 
  * Features:
  * - Logo automatiquement caché si non trouvé

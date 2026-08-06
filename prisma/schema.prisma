@@ -147,12 +147,9 @@ model Home {
   stockLocations          StockLocation[]
   ligneBonSortie          LigneBonSortie[]
   ligneFactureFournisseur LigneFactureFournisseur[]
-  ligneBL                 LigneBL[]  // nouvelles relations
-  ligneFacture            LigneFacture[]
   lignesBonEntree         LigneBonEntree[]          // ← Ajoutez cette ligne
   lignesInventaire LigneInventaire[]  // ← Ajoutez cette ligne
   vehicules               Vehicule[]                // ← AJOUTEZ CETTE LIGNE
-  bonLivraisons           BonLivraison[]            
 }
 
 model Category {
@@ -259,6 +256,7 @@ model ClientAddress {
 model Client {
   id            String            @id @default(cuid())
   nom           String
+  prenom        String?
   telephone     String
   email         String?
   mf            String?
@@ -347,7 +345,6 @@ model BonLivraison {
   clientId       String
   factureId      String?
   chauffeurId    String?  
-  homeId         String?   // Entrepôt source (PRINCIPAL ou véhicule)
   statut         StatutBL  @default(EN_ATTENTE)
   modeReglement  TypeReglement?  
   montantTotal   Float     @default(0) 
@@ -369,21 +366,18 @@ model BonLivraison {
   retourClients RetourClient[]
 
   chauffeur      Chauffeur? @relation(fields: [chauffeurId], references: [id])
-  home           Home?      @relation(fields: [homeId], references: [id])
 }
  
 model LigneBL {
   id             String       @id @default(cuid())
   bonLivraisonId String
   productId      String
-  homeId         String
   quantite       Int
   quantiteRetournee Int @default(0)
   prixVente      Float        @default(0)
   remiseLigne    Float        @default(0)
   bonLivraison   BonLivraison @relation(fields: [bonLivraisonId], references: [id])
   product        Product      @relation(fields: [productId], references: [id])
-  home           Home         @relation(fields: [homeId], references: [id])
 }
 
 model Facture {
@@ -417,14 +411,12 @@ model LigneFacture {
   id           String  @id @default(cuid())
   factureId    String
   productId    String
-  homeId       String?
   quantite     Int
   prixUnitaire Float
   remiseLigne  Float   @default(0)
   tva          Float   @default(19)
   facture      Facture @relation(fields: [factureId], references: [id])
   product      Product @relation(fields: [productId], references: [id])
-  home         Home?   @relation(fields: [homeId], references: [id])
 }
 
 model RetourClient {

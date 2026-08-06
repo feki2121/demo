@@ -33,10 +33,10 @@ interface CatalogueTemplateTestProps {
 
 const DEFAULT_COMPANY = {
   name: "DEMO",
-  address: "Adresse : Résidence Essalem, Bloc A au 1er étage, Bureau A.1-1, Ennasr 2, Ariana 2037",
-  phone: "25 535 035",
+  address: "Adresse : Sfax, Rte tunis km4",
+  phone: "44 150 151",
   email: "reg@gmail.com",
-  vat: "1615506X/A/M/000",
+  vat: "11111111/A/M/000",
 };
 
 const COLUMNS_PER_ROW = 4;

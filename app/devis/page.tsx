@@ -348,7 +348,7 @@ const handlePrint = (devi: Devis, format: PrintFormat = "A4") => {
       key: "totalTTC" as keyof Devis,
       header: "Total TTC",
       render: (item: Devis) => (
-        <span className="font-semibold">{formatCurrency(item.totalHT)}</span>
+        <span className="font-semibold">{formatCurrency(item.totalTTC)}</span>
       ),
     },
     {

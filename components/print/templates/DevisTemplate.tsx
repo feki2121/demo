@@ -11,8 +11,8 @@ interface DevisTemplateProps {
 const DEFAULT_COMPANY = {
   name: "DEMO",
   address: "Résidence Essalem, bloc A au 1er étage, Bureau A.1-1, Ennasr 2 Ariana 2037	",
-  phone: "25 535 035",
-  vat: "1615506X/A/M/000",
+  phone: "44 150 151",
+  vat: "11111111/A/M/000",
 };
 
 export const DevisTemplate: React.FC<DevisTemplateProps> = ({
@@ -62,7 +62,7 @@ export const DevisTemplate: React.FC<DevisTemplateProps> = ({
       <div className="header">
         <div className="logo-container">
           <img 
-            src="/REG.jpeg" 
+            src="/kf.jpg" 
             alt="Logo" 
             className="logo-img" 
             onError={(e) => (e.target as HTMLImageElement).style.display = 'none'}

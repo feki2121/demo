@@ -109,12 +109,10 @@ export async function GET(req: NextRequest) {
         const limit = parseInt(searchParams.get('limit') || '10');
         const skip = (page - 1) * limit;
         const clientId = searchParams.get('clientId');
-        const chantierId = searchParams.get('chantierId');
         const statut = searchParams.get('statut');
 
         const where: any = {};
         if (clientId) where.clientId = clientId;
-        if (chantierId) where.chantierId = chantierId;
 
         // === CORRECTION: Gérer le filtre statut ===
         if (statut) {
@@ -134,11 +132,6 @@ export async function GET(req: NextRequest) {
                 take: limit,
                 include: {
                     client: true,
-                    chantier: {
-                        include: {
-                            client: true,
-                        }
-                    },
                     lignes: {
                         include: {
                             product: {
@@ -147,7 +140,6 @@ export async function GET(req: NextRequest) {
                                     category: true,
                                 }
                             },
-                            home: true,
                         },
                     },
                     reglements: {
@@ -194,7 +186,6 @@ export async function POST(req: NextRequest) {
         const {
             numero,
             clientId,
-            chantierId,
             date,
             lignes,
             remise,
@@ -222,20 +213,7 @@ export async function POST(req: NextRequest) {
                 { status: 404 }
             );
         }
-
-        // Vérifier si le chantier existe (si fourni)
-        if (chantierId) {
-            const chantier = await prisma.chantier.findUnique({
-                where: { id: chantierId },
-            });
-            if (!chantier) {
-                return NextResponse.json(
-                    { error: 'Chantier non trouvé' },
-                    { status: 404 }
-                );
-            }
-        }
-
+      
         // Vérifier que le numéro est unique
         const existingFacture = await prisma.facture.findUnique({
             where: { numero },
@@ -300,11 +278,10 @@ export async function POST(req: NextRequest) {
                 data: {
                     numero,
                     clientId,
-                    chantierId: chantierId || null,
                     date: date ? new Date(date) : new Date(),
                     totalHT: calculResult.totalHT,
                     totalTVA: calculResult.totalTVA,
-                    totalTTC: calculResult.totalTTC,
+                    totalTTC: calculResult.totalTTC + 1,
                     remise: remiseValue,
                     statut: statut || 'IMPAYEE',
                     type: type || 'DIRECTE',
@@ -325,7 +302,6 @@ export async function POST(req: NextRequest) {
 
                             return {
                                 productId: l.productId,
-                                homeId: l.homeId || null,
                                 quantite: l.quantite,
                                 prixUnitaire: l.prixUnitaire,
                                 remiseLigne: !allSameTVA ? calculResult.montantRemise / lignes.length : l.remiseLigne || 0,
@@ -336,11 +312,6 @@ export async function POST(req: NextRequest) {
                 },
                 include: {
                     client: true,
-                    chantier: {
-                        include: {
-                            client: true,
-                        }
-                    },
                     lignes: {
                         include: {
                             product: {
@@ -348,7 +319,6 @@ export async function POST(req: NextRequest) {
                                     unite: true,
                                 }
                             },
-                            home: true,
                         },
                     },
                 },

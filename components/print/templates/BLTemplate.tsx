@@ -12,8 +12,8 @@ interface BLTemplateProps {
 const DEFAULT_COMPANY = {
     name: "DEMO",
     address: "Résidence Essalem, bloc A au 1er étage, Bureau A.1-1, Ennasr 2 Ariana 2037	",
-    phone: "25 535 035",
-    vat: "1615506X/A/M/000",
+    phone: "44 150 151",
+    vat: "11111111/A/M/000",
 };
 
 // Styles pour l'impression ticket (texte en gras)
@@ -191,7 +191,7 @@ export const BLTemplate: React.FC<BLTemplateProps> = ({
                 <div className="header-row">
                     <div className="logo-cell">
                         <img
-                            src="/REG.jpeg"
+                            src="/kf.jpg"
                             alt="Logo"
                             className="logo-img"
                             onError={(e) => (e.target as HTMLImageElement).style.display = 'none'}
@@ -349,7 +349,7 @@ export const BLTemplate: React.FC<BLTemplateProps> = ({
             <div className="header">
                 <div className="logo-container">
                     <img
-                        src="/REG.jpeg"
+                        src="/kf.jpg"
                         alt="Logo"
                         className="logo-img"
                         onError={(e) => (e.target as HTMLImageElement).style.display = 'none'}

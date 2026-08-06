@@ -70,17 +70,6 @@ export function Sidebar() {
       href: "/",
       icon: LayoutDashboard,
     },
-    ...(userRole === "ADMIN" ? [{
-      title: "Achats",
-      icon: ShoppingBag,
-      children: [
-        { title: "Fournisseurs", href: "/fournisseurs" },
-        { title: "Bons d'Entrée", href: "/bons-entree" },
-        { title: "Retours Fournisseurs", href: "/retours-fournisseurs" },
-        { title: "Règlements Fournisseurs", href: "/reglements/fournisseurs" },
-        { title: "Soldes Fournisseurs", href: "/fournisseurs/solde" },
-      ],
-    },] : []),
     {
       title: "Ventes",
       icon: ShoppingCart,
@@ -102,11 +91,6 @@ export function Sidebar() {
       icon: Package,
       children: [
         { title: "Services", href: "/produits" },
-        ...(userRole === "ADMIN"
-          ? [
-            { title: "Catégories", href: "/categories" },
-          ]
-          : []),
       ],
     },
     {
@@ -122,16 +106,6 @@ export function Sidebar() {
           : []),
       ],
     },
-    ...(userRole === "ADMIN" ? [{
-      title: "Paramètres",
-      icon: Settings,
-      children: [
-        { title: "Emplacements", href: "/emplacements" },
-        { title: "Véhicules", href: "/vehicules" },
-        { title: "Utilisateurs", href: "/utilisateurs" },
-        { title: "Chauffeurs", href: "/chauffeurs" },
-      ],
-    }] : []),
   ], [userRole]);
 
   useEffect(() => {

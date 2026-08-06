@@ -41,7 +41,6 @@ interface LigneFacture {
   id?: string;
   productId: string;
   product?: Product;
-  homeId: string;
   quantite: number;
   prixUnitaire: number;
   remiseLigne?: number;
@@ -55,12 +54,10 @@ interface LigneFacture {
     prixVente: number;
     tva: number;
     seuilAlerte: number;
-    homeId: string;
   };
 }
 
 interface Facture {
-  chantier: any;
   id: string;
   numero: string;
   date: string;
@@ -85,15 +82,12 @@ export default function FacturesPage() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [statutFilter, setStatutFilter] = useState<string>("TOUS");
-  const [chantierFilter, setChantierFilter] = useState<string>("TOUS");
-  const [chantiers, setChantiers] = useState<Array<{ id: string; nom: string }>>([]);
 
   const fetchFactures = async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams();
       if (statutFilter !== "TOUS") params.append("statut", statutFilter);
-      if (chantierFilter !== "TOUS") params.append("chantierId", chantierFilter);
       params.append("limit", "100");
 
       const response = await fetch(`/api/factures?${params.toString()}`);
@@ -112,29 +106,16 @@ export default function FacturesPage() {
     }
   };
 
-  const fetchChantiers = async () => {
-    try {
-      const response = await fetch("/api/chantiers?limit=100");
-      if (!response.ok) throw new Error("Erreur lors du chargement");
-      const data = await response.json();
-      setChantiers(data.data || []);
-    } catch (error) {
-      console.error("Error fetching chantiers:", error);
-    }
-  };
-
   useEffect(() => {
     fetchFactures();
-    fetchChantiers();
-  }, [statutFilter, chantierFilter]);
+  }, [statutFilter]);
 
   const filteredFactures = factures.filter(f => {
     if (!search) return true;
     const searchLower = search.toLowerCase();
     return (
       f.numero.toLowerCase().includes(searchLower) ||
-      f.client?.nom.toLowerCase().includes(searchLower) ||
-      f.chantier?.nom.toLowerCase().includes(searchLower)
+      f.client?.nom.toLowerCase().includes(searchLower)
     );
   });
 
@@ -407,30 +388,12 @@ export default function FacturesPage() {
                   </Select>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <Building2 className="h-4 w-4 text-muted-foreground" />
-                  <Select value={chantierFilter} onValueChange={setChantierFilter}>
-                    <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Chantier" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="TOUS">Tous les chantiers</SelectItem>
-                      {chantiers.map((c) => (
-                        <SelectItem key={c.id} value={c.id}>
-                          {c.nom}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => {
                     setSearch("");
                     setStatutFilter("TOUS");
-                    setChantierFilter("TOUS");
                   }}
                 >
                   Réinitialiser
@@ -450,7 +413,6 @@ export default function FacturesPage() {
                         <TableHead>N°</TableHead>
                         <TableHead>Date</TableHead>
                         <TableHead>Client</TableHead>
-                        <TableHead>Chantier</TableHead>
                         <TableHead className="text-right">Total TTC</TableHead>
                         <TableHead className="text-right">Actions</TableHead>
                       </TableRow>
@@ -461,20 +423,6 @@ export default function FacturesPage() {
                           <TableCell className="font-medium">{f.numero}</TableCell>
                           <TableCell>{formatDate(new Date(f.date))}</TableCell>
                           <TableCell>{f.client?.nom}</TableCell>
-                          <TableCell>
-                            {f.chantier ? (
-                              <Link
-                                href={`/chantiers/${f.chantier.id}`}
-                                className="text-primary hover:underline flex items-center gap-1"
-                              >
-                                <Building2 className="h-3 w-3" />
-                                {f.chantier.nom}
-                              </Link>
-                            ) : (
-                              "-"
-                            )}
-                          </TableCell>
-
                           <TableCell className="text-right font-semibold">
                             {formatCurrency(f.totalTTC)}
                           </TableCell>

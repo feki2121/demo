@@ -4,7 +4,7 @@ import { PrintFooterProps } from "@/types/print";
 const DEFAULT_COMPANY = {
   name: "DEMO",
   address: "Résidence Essalem, bloc A au 1er étage, Bureau A.1-1, Ennasr 2 Ariana 2037	XXX",
-  phone: "25 535 035",
+  phone: "44 150 151",
 };
 
 export const PrintFooter: React.FC<PrintFooterProps> = ({
