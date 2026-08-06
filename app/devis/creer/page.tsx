@@ -173,29 +173,6 @@ export default function CreerDevisPage() {
     setLignes(newLignes);
   };
 
-  const handleCreateNewProduct = () => {
-    if (!newProductData.reference || !newProductData.designation || !newProductData.categoryId) {
-      toast({ title: "Erreur", description: "Veuillez remplir tous les champs obligatoires", variant: "destructive" });
-      return;
-    }
-
-    const newLigne: LigneDevis = {
-      id: `new-${Date.now()}`,
-      productId: "",
-      quantite: 1,
-      prixUnitaire: newProductData.prixVente,
-      tva: newProductData.tva,
-      isNewProduct: true,
-      newProduct: { ...newProductData },
-    };
-
-    setLignes([...lignes, newLigne]);
-    setShowNewProductForm(false);
-    setNewProductData({ reference: "", code: "", designation: "", categoryId: "", prixVente: 0, tva: 19 });
-
-    toast({ title: "Succès", description: "Produit ajouté au devis" });
-  };
-
   const calculerSousTotal = () => {
     return lignes.reduce((sum, l) => sum + (l.quantite * l.prixUnitaire), 0);
   };

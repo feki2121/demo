@@ -349,52 +349,6 @@ export default function CaissePage() {
                                     <Button variant="outline" onClick={fetchCaisse}>
                                         Actualiser
                                     </Button>
-
-                                    {/* Filtres pour admin */}
-                                    {isAdmin && (
-                                        <>
-                                            <div className="flex items-center gap-2 ml-4">
-                                                <Label>Mode</Label>
-                                                <Button
-                                                    variant={viewMode === 'single' ? 'default' : 'outline'}
-                                                    size="sm"
-                                                    onClick={() => setViewMode('single')}
-                                                >
-                                                    Caisse unique
-                                                </Button>
-                                                <Button
-                                                    variant={viewMode === 'all' ? 'default' : 'outline'}
-                                                    size="sm"
-                                                    onClick={() => setViewMode('all')}
-                                                >
-                                                    Toutes les caisses
-                                                </Button>
-                                            </div>
-
-                                            {viewMode === 'single' && (
-                                                <div className="flex items-center gap-2">
-                                                    <Users className="h-4 w-4 text-muted-foreground" />
-                                                    <Label>Chauffeur</Label>
-                                                    <Select
-                                                        value={selectedChauffeurId || "none"}
-                                                        onValueChange={(value) => setSelectedChauffeurId(value === "none" ? "" : value)}
-                                                    >
-                                                        <SelectTrigger className="w-[200px]">
-                                                            <SelectValue placeholder="Caisse Admin" />
-                                                        </SelectTrigger>
-                                                        <SelectContent>
-                                                            <SelectItem value="none">Caisse Admin</SelectItem>
-                                                            {chauffeurs.map((chauffeur) => (
-                                                                <SelectItem key={chauffeur.id} value={chauffeur.id}>
-                                                                    {chauffeur.nom}
-                                                                </SelectItem>
-                                                            ))}
-                                                        </SelectContent>
-                                                    </Select>
-                                                </div>
-                                            )}
-                                        </>
-                                    )}
                                 </div>
                             </CardContent>
                         </Card>

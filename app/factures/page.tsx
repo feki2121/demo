@@ -414,7 +414,7 @@ export default function FacturesPage() {
                         <TableHead>Date</TableHead>
                         <TableHead>Client</TableHead>
                         <TableHead className="text-right">Total TTC</TableHead>
-                        <TableHead className="text-right">Actions</TableHead>
+                        <TableHead className="text-center">Actions</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -426,31 +426,41 @@ export default function FacturesPage() {
                           <TableCell className="text-right font-semibold">
                             {formatCurrency(f.totalTTC)}
                           </TableCell>
-                          <TableCell className="text-right">
-                            <DropdownMenu>
-                              <DropdownMenuTrigger asChild>
-                                <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                                  <MoreHorizontal className="h-4 w-4" />
-                                </Button>
-                              </DropdownMenuTrigger>
-                              <DropdownMenuContent align="end">
-                                <DropdownMenuItem asChild>
-                                  <Link href={`/factures/${f.id}`}>
-                                    <Eye className="mr-2 h-4 w-4" />
-                                    Voir
-                                  </Link>
-                                </DropdownMenuItem>
-                                <Button
-                                  size="icon"
-                                  className="h-8 w-8"
-                                  variant="ghost"
-                                  onClick={() => handlePrintFacture(f, "A4")}
-                                  title="Imprimer facture"
-                                >
-                                  <Printer className="h-4 w-4" />
-                                </Button>
-                              </DropdownMenuContent>
-                            </DropdownMenu>
+                          <TableCell className="text-center">
+                            <div className="flex items-center justify-center gap-1">
+                              {/* Bouton Voir */}
+                              <Button
+                                size="icon"
+                                variant="ghost"
+                                className="h-8 w-8"
+                                asChild
+                              >
+                                <Link href={`/factures/${f.id}`}>
+                                  <Eye className="h-4 w-4" />
+                                </Link>
+                              </Button>
+
+                              {/* Bouton Imprimer */}
+                              <Button
+                                size="icon"
+                                variant="ghost"
+                                className="h-8 w-8"
+                                onClick={() => handlePrintFacture(f, "A4")}
+                                title="Imprimer facture"
+                              >
+                                <Printer className="h-4 w-4" />
+                              </Button>
+
+                              {/* Bouton Modifier (optionnel) */}
+                              <Button
+                                size="icon"
+                                variant="ghost"
+                                className="h-8 w-8"
+                                asChild
+                              >
+                               
+                              </Button>
+                            </div>
                           </TableCell>
                         </TableRow>
                       ))}

@@ -95,10 +95,6 @@ interface BonLivraison {
   remise?: number;
     montantHTAvantRemise: number;
   totalHT: number;
-  chauffeur?: {
-    id: string;
-    nom: string;
-  };
   createdAt: Date;
   updatedAt: Date;
 }
@@ -640,7 +636,6 @@ export default function BonsLivraisonPage() {
     { key: "articles" as const, header: "Articles", render: (item: BonLivraison) => <Badge variant="secondary">{item.lignes.length} article(s)</Badge> },
     { key: "factureId" as const, header: "Facture", render: (item: BonLivraison) => <span className={cn("text-sm", item.factureId ? "text-primary" : "text-muted-foreground")}>{item.factureId ? "Liée" : "Non liée"}</span> },
     { key: "totalttc" as const, header: "Total TTC", render: (item: BonLivraison) => <span className="font-medium">{formatCurrency(item.montantTotal)}</span> },
-    { key: "chauffeur" as const, header: "Chauffeur", render: (item: BonLivraison) => <span className="text-sm">{item.chauffeur?.nom || "Admin"}</span> },
 
     {
       key: "whatsapp" as const,
@@ -694,38 +689,6 @@ export default function BonsLivraisonPage() {
             title="Imprimer format A4 (2 copies)"
           >
             <Printer className="h-4 w-4" />
-          </Button>
-
-          {/* Bouton Ticket Société */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-8 w-8 bg-blue-50 hover:bg-blue-100"
-            onClick={() => handlePrintTicket(item, 'SOCIETE')}
-            title="Ticket - Copie Société"
-          >
-            <Receipt className="h-4 w-4 text-blue-600" />
-          </Button>
-
-          {/* Bouton Ticket Client */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-8 w-8 bg-green-50 hover:bg-green-100"
-            onClick={() => handlePrintTicket(item, 'CLIENT')}
-            title="Ticket - Copie Client"
-          >
-            <Receipt className="h-4 w-4 text-green-600" />
-          </Button>
-
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-8 w-8 bg-blue-50 hover:bg-blue-100"
-            onClick={() => handlePrintTicket2(item, 'SOCIETE')}
-            title="Ticket - Copie Société"
-          >
-            <Receipt className="h-4 w-4 text-blue-600" />
           </Button>
         </div>
       ),
