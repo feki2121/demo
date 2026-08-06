@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Loader2, Truck } from "lucide-react";
+import { BriefcaseBusiness, Loader2, Truck } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export default function LoginPage() {
@@ -61,7 +61,7 @@ export default function LoginPage() {
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
             <div className="p-3 bg-primary/10 rounded-full">
-              <Truck className="h-8 w-8 text-primary" />
+              <BriefcaseBusiness className="h-8 w-8 text-primary" />
             </div>
           </div>
           <CardTitle className="text-2xl">Connexion</CardTitle>

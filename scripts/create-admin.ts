@@ -11,7 +11,7 @@ async function main() {
     update: {},
     create: {
       phone: "58417971",
-      email: "fekii@gmail.com",
+      email: "kf@gmail.com",
       password: hashedPassword,
       nom: "Administrateur",
       role: "ADMIN",
